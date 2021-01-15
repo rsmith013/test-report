@@ -1,10 +1,10 @@
 # !/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 setup(
     name='test_report',
-    packages=[],
-    version='0.1.0',
+    packages=find_packages(),
+    version='0.1.1',
     description='Testing framework   which genereates a report object',
     author='Richard Smith',
     license='BSD',
