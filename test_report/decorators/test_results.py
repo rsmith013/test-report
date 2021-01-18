@@ -18,6 +18,6 @@ def test_results(func):
     """
     @wraps(func)
     def wrapper(*args):
-        test_results = TestResults(func.__name__)
+        test_results = TestResults(func.__name__, item=args[0].item)
         return func(*args, results=test_results)
     return wrapper

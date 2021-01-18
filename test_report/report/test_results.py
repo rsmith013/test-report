@@ -26,7 +26,8 @@ class TestResults:
     def warnings(self):
         return len(self.get_warnings())
 
-    def __init__(self, name):
+    def __init__(self, name, item=None):
+        self.item = item
         self.name = name
         self.REPORT = {}
 

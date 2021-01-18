@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name='test_report',
     packages=find_packages(),
-    version='0.1.1',
+    version='0.1.2',
     description='Testing framework   which genereates a report object',
     author='Richard Smith',
     license='BSD',

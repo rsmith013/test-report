@@ -8,6 +8,8 @@ __copyright__ = 'Copyright 2018 United Kingdom Research and Innovation'
 __license__ = 'BSD - see LICENSE file in top-level package directory'
 __contact__ = 'richard.d.smith@stfc.ac.uk'
 
+from test_report.display import TextColours
+from test_report.exceptions import TestFailureException
 
 class TestCase:
 
@@ -43,6 +45,33 @@ class TestCase:
         for test in tests:
             self.run_test(test)
 
+    @classmethod
+    def run_loop(cls, cmd_args):
+
+        TEST_FAILED = False
+
+        # Get list of datasets
+        for item in cls.iterator:
+            print(f'\n\n{TextColours.BOLD}Testing {item}', end=" ")
+
+            test_class = cls(verbosity=cmd_args.verbose, item=item)
+            test_class.run()
+
+            if not test_class.failed:
+                print(f'{TextColours.OKGREEN}...OK{TextColours.ENDC}')
+            else:
+                TEST_FAILED = True
+                print()
+
+        return TEST_FAILED
+
+    @classmethod
+    def run_tests(cls, args):
+
+        TEST_FAILED = cls.run_loop(args)
+
+        if TEST_FAILED:
+            raise TestFailureException
 
 
 
